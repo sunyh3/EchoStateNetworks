@@ -42,13 +42,23 @@ forecast = my_ESN.forecast(data, index, forecastHorizon, windowMode)
 
 * **data**, required, _class_ Data, contains the data
 * _nForgetPoints_, optional, integer >0, default: 100, Initial reservoir states that should be forgotten
-    
-#### _class method_ EchoStateNetwork.forecast()
+***
+  
+#### _class method_ EchoStateNetwork.multi_step_ahead_forecast()
 ###### Input Arguments
-+++ tbd +++   
-###### Output Arguments
+* **data**, required, Data object
+* **forecast_horizon**, required, integer >= 1, Set the amount of total timesteps for iterative forecasting
+* **index**, required, integer >= 0, Sets the index on where to start the forecast
+* _window_mode_, optional, "Expanding","Fixed", "Rolling", default: "Expanding" Determines on how the backlog of data is being used.
+* _window_size_, optional, integer >0, default: 20, Determines the size of the window
+* _no_samples_ , optional, integer >0, default: 10, Determines the number of samples drawn from the collected state matrizes
+* _no_forget_points_ , optional, integer >0, default: 50, Sets the number of data points at the beginning not considered for training
 
+###### Output
+* **multi_step_forecast**, the forecast by the ESN
+* **actual**, the actual value of the test set (None if those values are not available)
 
+***
 ### References
 Developed in Python 3.6.9
 
